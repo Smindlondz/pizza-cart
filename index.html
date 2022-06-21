@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfect Pizza</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="//unpkg.com/alpinejs" defer></script>
+</head>
+
+<body>
+    <div  class="container" x-data="{
+        showCart: false,
+        smallQty : 0,
+        mediumQty : 0,
+        largeQty : 0, 
+        smallTotal : 0.00,
+        mediumTotal : 0.00, 
+        largeTotal : 0.00 , 
+        VAT: 0.00,
+
+        buySmall() {
+            this.smallTotal += 54.50; 
+            this.smallQty +=1;
+            
+        },
+        removeSmall() {
+            if (this.smallQty > 0) {
+                this.smallTotal -= 54.50;
+                this.smallQty -=1;
+            } 
+        }, 
+        buyMedium() {
+            this.mediumTotal += 83.99; 
+            this.mediumQty +=1;
+            
+        },
+        removeMedium() {
+            if (this.mediumQty > 0) {
+                this.mediumTotal -= 83.99;
+                this.mediumQty -=1;
+            } 
+        },
+        buyLarge() {
+            this.largeTotal += 131.99; 
+            this.largeQty +=1;
+            
+        },
+        removeLarge() {
+            if (this.largeQty > 0) {
+                this.largeTotal -= 131.99;
+                this.largeQty -=1;
+            } 
+        },  
+        subTotal() {
+            return this.smallTotal + this.mediumTotal + this.largeTotal;
+        },
+        totalQty() {
+            return this.smallQty + this.mediumQty + this.largeQty; 
+        },
+        amountVat() {
+            return this.subTotal() * 0.15;
+        },
+        totalPrice() {
+            return this.subTotal() + this.amountVat();
+        }
+
+        
+    }">
+        <!-- -------------------HEADER SECTION---------------------------- -->
+        <header>
+            <!-- IN THIS BTN IF QUANTITY IS ZERO SHOW CART-A ELSE IF QUANTITY IS GREATER THAN 1 SHOW CART-B -->
+        <div class="cart-icon" @click="showCart=!showCart">
+            <i class="fa fa-shopping-bag"></i> 
+            <b x-text="totalQty()" class="col"><span></span></b> <b class="col">Items</b>
+        </div>
+        <h1>Ayama Pizza Store</h1>
+        </header>
+
+        <!-- ----------------SHOW THIS CART IF THE QUANTITY IS EQUAL TO ZERO------- -->
+
+        <!-- <div class="cart-cont-A" x-show="showCart">
+
+            <button class="cart-A" x-on:click="showCart=false">
+                <i class="fa fa-window-close"aria-hidden="false"></i>
+            </button>
+          <div class="c2">
+            <b>You have no items in your Shopping cart.</b> 
+          </div>
+        </div>
+         -->
+        <!-- ----------------SHOW THIS CART IF THE QUANTITY IS GREATER THAN ZERO----------->
+
+        <div class="cart-B" x-show="showCart">
+            <table>
+                <tr>
+                    <div class="cart-title">
+                        <th>Shopping Cart</th>
+                        <th></th>
+                        <th>
+                            <a href="">Remove All</a> </th>
+                        </th>
+                    </div>
+                    
+                </tr>
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            <div class="cart-info">
+                                <img src="images/small.png">
+                                <div>
+                                    <p>Small Pizza</p>
+                                    <small>Price: R54.00</small>
+                                    <a href="">Remove</a>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <button class="q" x-on:click="buySmall">+</button>
+                        <button class="q" x-on:click="removeSmall">-</button>
+                    Qty: <span x-text="smallQty"></span>
+                        
+                    </td>
+                    <td>
+                        R <span x-text="smallTotal.toFixed(2)"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            <div class="cart-info">
+                                <img src="images/medium.png">
+                                <div>
+                                    <p>Medium Pizza</p>
+                                    <small>Price: R83.99</small>
+                                    <a href="">Remove</a>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <button class="q" x-on:click="buyMedium">+</button>
+                        <button class="q" x-on:click="removeMedium">-</button>
+                    Qty: <span x-text="mediumQty"></span>
+                    </td>
+                    <td>
+                        R <span x-text="mediumTotal.toFixed(2)"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            <div class="cart-info">
+                                <img src="images/large.png">
+                                <div>
+                                    <p>Large Pizza</p>
+                                    <small>Price: R131.99</small>
+                                    <a href="">Remove</a>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                            <button class="q" x-on:click="buyLarge">+</button>
+                        <button class="q" x-on:click="removeLarge">-</button>
+                    Qty: <span x-text="largeQty"></span>
+                    </td>
+                    <td>
+                        R <span x-text="largeTotal.toFixed(2)"></span>
+                    </td>
+                </tr>
+            </table>
+            <div class="total-price">
+                <table>
+                    <tr>
+                        <td><b>Subtotal</b></td>
+                        <td><b>
+                            R <span x-text="subTotal().toFixed(2)"></span>
+                        </b></td>
+                    </tr>
+                    <tr>
+                        <td><b>VAT</b></td>
+                        <td><b>
+                            R <span x-text="amountVat().toFixed(2)"></span>
+                        </b></td>
+                    </tr>
+                    <t>
+                       <td><b>Gross Price</b></td> 
+                        <td><b>
+                            R <span x-text="totalPrice().toFixed(2)"></span>
+                        </b></td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+        <div class="pizzas">
+            <div class="small box">
+                <h2>Small Pizza</h2>
+                <img src="images/small.png" width="200">
+                <div class="text">
+                    Small pizza with 3 toppings 1 meat topping, 3 or less other toppings.
+                </div>
+                <h3>R54.50</h3>
+                <button x-on:click="buySmall">
+                    <i class="fa fa-shopping-cart" aria-hidden="true"></i> Add To Cart
+                </button>
+            </div>
+            <div class="medium box">
+                <h2>Medium Pizza</h2>
+                <img src="images/medium.png" width="200">
+                
+                <div class="text">
+                    Medium margeritha pizza with 3 toppings max, 2 orless meat topping. 3 or less toppings.
+                </div>
+                <h3>R83.99</h3>
+                <button x-on:click="buyMedium">
+                    <i class="fa fa-shopping-cart" aria-hidden="true"></i> Add To Cart
+                </button>
+
+            </div>
+
+            <div class="large box">
+                <h2>Large Pizza</h2>
+                <img src="images/large.png" width="200">
+                
+                <div class="text">
+                    large margetha pizza with 3 toppings max. 3 meat topping max. 3 or less other toppings.
+                </div>
+                <h3>R131.99</h3>
+                <button x-on:click="buyLarge">
+                    <i class="fa fa-shopping-cart" aria-hidden="true"></i> Add To Cart
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="contacts box">
+
+            <h2>Contact Details</h2>
+            <div class="details">
+                <div class="left">
+                    <div>
+                        Contact us at: 011 222 9000
+                    </div>
+                    <div>
+                        Email us at :sales@Perfectpizza.com
+                    </div>
+                    <div>
+                        Address: Tolo street 422 clayville
+                    </div>
+                    <div>
+                        Pretoria
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</body>
+
+</html>

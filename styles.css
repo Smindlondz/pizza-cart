@@ -1,0 +1,224 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+header {
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    margin: 1em;
+    padding: 0.3em;
+   
+    
+    
+  }
+/* To make sure that my screen is flexible with content */
+.container {
+    margin: auto;
+    width: 100%;
+}
+
+.cart {
+    padding: 1em;
+    margin: 1em;
+}
+.col {
+    color: red;
+}
+
+body {
+    background-color: #ffbd00;
+    font-family: 'Montserrat', sans-serif;
+    padding: 20px;
+    margin: 0px;
+}
+
+h1 {
+    text-align: center;
+}
+
+h3 {
+    color: #fff;
+    margin: 1em;
+}
+
+button {
+    padding: 1em;
+    margin: 1em;
+    margin-bottom: 1em;
+    font-weight: bolder;
+    border: 1em;
+    border-radius: 1.5em;
+    cursor: pointer;
+}
+.text {
+    font-weight: 550;
+}
+
+.box {
+    border: 3px solid whitesmoke;
+    padding: 1em;
+    margin: 1em;
+    border-radius: 0.5em;
+}
+
+.small {
+    background-color: #ff5400;
+}
+
+.medium {
+    background-color: #ff0054;
+}
+
+.large {
+    background-color: #9e0059;
+}
+
+.contacts {
+    background-color: #390099;
+    color: white;
+    /* font-weight: 600; */
+
+}
+
+@media (min-width: 900px) {
+    .pizzas {
+        display: flex;
+    }
+    .cart-B {
+        width: fit-content;
+    }
+    .cart-cont-A {
+        width: 40%;
+    } 
+}
+@media (max-width: 900px) {
+    .cart-icon i{
+        display: flex;
+    }
+}
+/* Style buttons */
+.btn {
+    background-color: DodgerBlue;
+    /* Blue background */
+    border: none;
+    /* Remove borders */
+    color: white;
+    /* White text */
+    padding: 12px 16px;
+    /* Some padding */
+    font-size: 16px;
+    /* Set a font size */
+    cursor: pointer;
+    /* Mouse pointer on hover */
+    /* justify-content: flex-end; */
+    /* display: flex; */
+} 
+
+/* Darker background on mouse-over */
+.btn:hover {
+    background-color: RoyalBlue;
+}
+.cart-icon {
+    float: right;
+    margin-bottom: 1em;
+}
+.cart-icon i {
+    font-size: 30px;
+    color: dodgerblue;
+    cursor: pointer;
+    /* float: right; */
+    justify-content: space-evenly;
+  }
+  
+  .cart-icon > i:hover {
+    color: royalblue;
+  }
+
+.cart-B {
+    margin: 80px auto;
+    /* width: 70%; */
+    height: 85%;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 25px 40px #1687d933;
+    overflow-x: auto; /*To make sure that table is responsive */
+}
+.c2 {
+    margin-top: 2em;
+    text-align: center;
+    font-style: normal;
+    font-size: 13px;
+    color: gray;
+}
+.cart-cont-A {
+    margin: 80px auto;
+    height: 85%;
+    /* width: 40%; */
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 25px 40px #1687d933;
+    padding: 1em;
+    text-align: right;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cart-info {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 1em;
+    align-items: center;
+}
+tr {
+    margin-top: 1em;
+}
+table th {
+    text-align: left;
+    padding: 5px;
+    color: #fff;
+    background-color: #ff523b;
+    font-style: normal;
+}
+td input {
+    width: 40px;
+    height: 30px;
+    padding: 5px;
+}
+td a {
+    color:#ff523b;
+    font-size: 12px;
+}
+td img {
+    width: 100px;
+    margin: 20px;
+}
+.total-price {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    
+}
+.total-price table {
+    border-top: 3px solid #ff523b;
+    width: 100%;
+    max-width: 350px;
+}
+
+td:last-child {
+    text-align: center;
+    
+}
+/* To align data in the table*/
+th:last-child {
+    text-align: center;
+    
+}
+.q {
+    font-size: 15px;
+    font-style: normal;
+    font-weight: bolder;
+}
