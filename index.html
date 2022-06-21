@@ -68,18 +68,42 @@
         },
         totalPrice() {
             return this.subTotal() + this.amountVat();
-        }
+        },
+        paymentMessage:'',
+        pay:false,
+        paymentAmount:0,
 
+        makePayment(){
+            let amount = parseInt(this.paymentAmount); let price = parseInt(this.totalPrice());
+            
+            if(amount == 0){
+              this.paymentMessage = 'Enter Payment Amount.';
+            }
+            else if(amount >= price){
+              this.paymentMessage = 'Payment Successful !';
+              this.smallQty = 0;
+              this.mediumQty = 0;
+              this.largeQty = 0;
+              setTimeout(() => {
+                this.pay = false;
+                this.paymentMessage = '';
+                this.paymentAmount = 0;
+    
+              }, '5000')
+            } else{
+            this.paymentMessage = 'Payment Declined !';
+            }
+          }
         
     }">
         <!-- -------------------HEADER SECTION---------------------------- -->
         <header>
             <!-- IN THIS BTN IF QUANTITY IS ZERO SHOW CART-A ELSE IF QUANTITY IS GREATER THAN 1 SHOW CART-B -->
-        <div class="cart-icon" @click="showCart=!showCart">
-            <i class="fa fa-shopping-bag"></i> 
-            <b x-text="totalQty()" class="col"><span></span></b> <b class="col">Items</b>
-        </div>
-        <h1>Ayama Pizza Store</h1>
+            <div class="cart-icon" @click="showCart=!showCart">
+                <i class="fa fa-shopping-bag"></i> 
+                <b x-text="totalQty()" class="col"><span></span></b> <b class="col">Items</b>
+            </div>
+            <h1>Ayama Pizza Store</h1>
         </header>
 
         <!-- ----------------SHOW THIS CART IF THE QUANTITY IS EQUAL TO ZERO------- -->
@@ -121,7 +145,7 @@
                                 <div>
                                     <p>Small Pizza</p>
                                     <small>Price: R54.00</small>
-                                    <a href="">Remove</a>
+                                    <!-- <a href="">Remove</a> -->
                                 </div>
                             </div>
                         </div>
@@ -144,7 +168,7 @@
                                 <div>
                                     <p>Medium Pizza</p>
                                     <small>Price: R83.99</small>
-                                    <a href="">Remove</a>
+                                    <!-- <a href="">Remove</a> -->
                                 </div>
                             </div>
                         </div>
@@ -166,7 +190,7 @@
                                 <div>
                                     <p>Large Pizza</p>
                                     <small>Price: R131.99</small>
-                                    <a href="">Remove</a>
+                                    <!-- <a href="">Remove</a> -->
                                 </div>
                             </div>
                         </div>
@@ -200,6 +224,27 @@
                         <td><b>
                             R <span x-text="totalPrice().toFixed(2)"></span>
                         </b></td>
+                    </tr>
+                    <tr x-show="totalPrice()>0">
+                        <div x-show="pay">
+                            <td colspan="3">
+                                <button x-show="!pay" @click="pay=true" class="nice">Checkout</button>
+                            </td>
+                        </div>
+                    </tr>
+                    <tr x-show="pay">
+                        <td colspan="3" class="message" x-text="paymentMessage"><i></i></td>
+                    </tr>
+                    <tr x-show="pay">
+                        <td colspan="2"><b>Payment Amount:</b></td>
+                        <td>
+                            <b>R <span><input type="number" min="0" x-model="paymentAmount"></span></b> 
+                        </td>
+                    </tr> 
+                    <tr x-show="pay">
+                        <td colspan="3">
+                            <button  @click="makePayment()" class="nice">Pay Now</button>
+                        </td>
                     </tr>
                 </table>
             </div>
