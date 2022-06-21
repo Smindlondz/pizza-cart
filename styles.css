@@ -232,9 +232,8 @@ th:last-child {
 	font-style: normal;
 }
 .success {
-  	color: #52c41a;
-  	font-weight: bold;
-  	font-style: normal;
+  	color: #525050;
+  
 }
   
   td input {
@@ -248,24 +247,21 @@ th:last-child {
 }
 .nice {
 	box-sizing: border-box;
-	appearance: none;
 	background-color: #ff523b;
-	border: 2px solid #ff523b;
+	border: 1px solid #ff523b;
 	border-radius: 0.6em;
 	color: #fff;
 	cursor: pointer;
 	display: flex;
-	align-self: center;
-	font-size: 1rem;
-	/* font-weight: 400; */
 	line-height: 1;
-	margin: 20px;
 	padding: 1.2em 2.8em;
-	text-decoration: none;
 	text-align: center;
 	text-transform: uppercase;
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 550;
+    margin: auto;
+    margin-bottom: 1em;
+    margin-top: 1em;
 }
 
 	nice:hover {

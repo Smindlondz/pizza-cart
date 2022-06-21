@@ -25,35 +25,35 @@
         VAT: 0.00,
 
         buySmall() {
-            this.smallTotal += 54.50; 
+            this.smallTotal += 34.50; 
             this.smallQty +=1;
             
         },
         removeSmall() {
             if (this.smallQty > 0) {
-                this.smallTotal -= 54.50;
+                this.smallTotal -= 34.50;
                 this.smallQty -=1;
             } 
         }, 
         buyMedium() {
-            this.mediumTotal += 83.99; 
+            this.mediumTotal += 52.40; 
             this.mediumQty +=1;
             
         },
         removeMedium() {
             if (this.mediumQty > 0) {
-                this.mediumTotal -= 83.99;
+                this.mediumTotal -= 52.40;
                 this.mediumQty -=1;
             } 
         },
         buyLarge() {
-            this.largeTotal += 131.99; 
+            this.largeTotal += 109.99; 
             this.largeQty +=1;
             
         },
         removeLarge() {
             if (this.largeQty > 0) {
-                this.largeTotal -= 131.99;
+                this.largeTotal -= 109.99;
                 this.largeQty -=1;
             } 
         },  
@@ -67,7 +67,7 @@
             return this.subTotal() * 0.15;
         },
         totalPrice() {
-            return this.subTotal() + this.amountVat();
+            return this.subTotal() - this.amountVat();
         },
         paymentMessage:'',
         pay:false,
@@ -144,7 +144,7 @@
                                 <img src="images/small.png">
                                 <div>
                                     <p>Small Pizza</p>
-                                    <small>Price: R54.00</small>
+                                    <small>Price: R34.50</small>
                                     <!-- <a href="">Remove</a> -->
                                 </div>
                             </div>
@@ -167,7 +167,7 @@
                                 <img src="images/medium.png">
                                 <div>
                                     <p>Medium Pizza</p>
-                                    <small>Price: R83.99</small>
+                                    <small>Price: R52.40</small>
                                     <!-- <a href="">Remove</a> -->
                                 </div>
                             </div>
@@ -189,7 +189,7 @@
                                 <img src="images/large.png">
                                 <div>
                                     <p>Large Pizza</p>
-                                    <small>Price: R131.99</small>
+                                    <small>Price: R109.99</small>
                                     <!-- <a href="">Remove</a> -->
                                 </div>
                             </div>
@@ -208,21 +208,21 @@
             <div class="total-price">
                 <table>
                     <tr>
-                        <td><b>Subtotal</b></td>
-                        <td><b>
-                            R <span x-text="subTotal().toFixed(2)"></span>
-                        </b></td>
+                        <td>Total Excl. Tax</td> 
+                        <td>
+                            R <span x-text="totalPrice().toFixed(2)"></span>
+                        </td>
                     </tr>
                     <tr>
-                        <td><b>VAT</b></td>
-                        <td><b>
+                        <td>VAT</td>
+                        <td>
                             R <span x-text="amountVat().toFixed(2)"></span>
-                        </b></td>
+                        </td>
                     </tr>
-                    <t>
-                       <td><b>Gross Price</b></td> 
+                    <tr class="success">
+                        <td><b>Total Incl. Tax</b></td>
                         <td><b>
-                            R <span x-text="totalPrice().toFixed(2)"></span>
+                            R <span x-text="subTotal().toFixed(2)"></span>
                         </b></td>
                     </tr>
                     <tr x-show="totalPrice()>0">
@@ -232,15 +232,15 @@
                             </td>
                         </div>
                     </tr>
-                    <tr x-show="pay">
-                        <td colspan="3" class="message" x-text="paymentMessage"><i></i></td>
-                    </tr>
-                    <tr x-show="pay">
+                    <tr x-show="pay" class="success">
                         <td colspan="2"><b>Payment Amount:</b></td>
                         <td>
                             <b>R <span><input type="number" min="0" x-model="paymentAmount"></span></b> 
                         </td>
                     </tr> 
+                    <tr x-show="pay">
+                        <td colspan="3" class="message" x-text="paymentMessage"><i></i></td>
+                    </tr>
                     <tr x-show="pay">
                         <td colspan="3">
                             <button  @click="makePayment()" class="nice">Pay Now</button>
@@ -257,7 +257,7 @@
                 <div class="text">
                     Small pizza with 3 toppings 1 meat topping, 3 or less other toppings.
                 </div>
-                <h3>R54.50</h3>
+                <h3>R34.50</h3>
                 <button x-on:click="buySmall">
                     <i class="fa fa-shopping-cart" aria-hidden="true"></i> Add To Cart
                 </button>
@@ -269,7 +269,7 @@
                 <div class="text">
                     Medium margeritha pizza with 3 toppings max, 2 orless meat topping. 3 or less toppings.
                 </div>
-                <h3>R83.99</h3>
+                <h3>R52.40</h3>
                 <button x-on:click="buyMedium">
                     <i class="fa fa-shopping-cart" aria-hidden="true"></i> Add To Cart
                 </button>
@@ -283,7 +283,7 @@
                 <div class="text">
                     large margetha pizza with 3 toppings max. 3 meat topping max. 3 or less other toppings.
                 </div>
-                <h3>R131.99</h3>
+                <h3>R109.99</h3>
                 <button x-on:click="buyLarge">
                     <i class="fa fa-shopping-cart" aria-hidden="true"></i> Add To Cart
                 </button>
