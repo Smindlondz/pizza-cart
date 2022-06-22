@@ -262,6 +262,8 @@ th:last-child {
     margin: auto;
     margin-bottom: 1em;
     margin-top: 1em;
+    width: 165px;
+	display:grid;
 }
 
 	nice:hover {
