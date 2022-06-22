@@ -74,27 +74,32 @@
         paymentAmount:0,
 
         makePayment(){
-            let amount = parseInt(this.paymentAmount); let price = parseInt(this.totalPrice());
+            let amount = parseInt(this.paymentAmount); let price = parseInt(this.subTotal());
             
             if(amount == 0){
               this.paymentMessage = 'Enter Payment Amount.';
             }
             else if(amount >= price){
               this.paymentMessage = 'Payment Successful !';
-              this.smallQty = 0;
-              this.mediumQty = 0;
-              this.largeQty = 0;
+
+              
+
               setTimeout(() => {
+                this.clearCart();
                 this.pay = false;
-                this.paymentMessage = '';
-                this.paymentAmount = 0;
-    
-              }, '5000')
-            } else{
+              }, 3000);
+
+            
+            } else if (amount < price){
             this.paymentMessage = 'Payment Declined !';
             }
-          }
-        
+        },
+
+        clearCart() {
+            this.smallQty = 0; this.mediumQty = 0; this.largeQty = 0; this.smallTotal = 0.00; 
+            this.mediumTotal = 0.00; this.largeTotal = 0.00 ; this.VAT = 0.00;  this.paymentMessage = '';
+            ; this.paymentAmount = 0; this.showCart = false;
+        }
     }">
         <!-- -------------------HEADER SECTION---------------------------- -->
         <header>
