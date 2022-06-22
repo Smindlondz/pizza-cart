@@ -76,7 +76,7 @@
         makePayment(){
             let amount = parseInt(this.paymentAmount); let price = parseInt(this.subTotal());
             
-            if(amount == 0){
+            if(amount == 0 || amount == undefined){
               this.paymentMessage = 'Enter Payment Amount.';
             }
             else if(amount >= price){
